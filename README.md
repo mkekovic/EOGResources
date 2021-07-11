@@ -1,2 +1,5 @@
-# EOGResources
-Interview for EOG
+## Create React App Visualization
+
+This assessment was bespoke handcrafted for Miljan.
+
+Read more about this assessment [here](https://react.eogresources.com)
