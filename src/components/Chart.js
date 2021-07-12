@@ -6,35 +6,38 @@ import {
   Chart,
   LineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
+import '../styles/Chart.css'
 
 const format = () => tick => prettyDate2(tick);
 
-function prettyDate2(time){
-    var date = new Date(parseInt(time));
-    var localeSpecificTime = date.toLocaleTimeString();
-    return localeSpecificTime.replace(/:\d+ /, ' ');
+function prettyDate2(time) {
+  var date = new Date(parseInt(time));
+  var localeSpecificTime = date.toLocaleTimeString();
+  return localeSpecificTime.replace(/:\d+ /, ' ');
 }
 
 const ValueLabel = (props) => {
-    const { text } = props;
-    return (
-      <ValueAxis.Label
-        {...props}
-        text={`${text}`}
-      />
-    );
+  const { text } = props;
+  return (
+    <ValueAxis.Label
+      {...props}
+      text={`${text} `}
+    />
+  );
 };
 
 
 export default (props) => (
-  <Paper>
-    <Chart
-      data={props.title}
-    >
-      <ArgumentAxis tickFormat={format}/>
-      <ValueAxis max={50} labelComponent={ValueLabel} />
+  <div className="div-alignment">
+    <Paper>
+      <Chart
+        data={props.title}
+      >
+        <ArgumentAxis tickFormat={format} />
+        <ValueAxis max={50} labelComponent={ValueLabel} />
 
-      <LineSeries valueField="value" argumentField="argument" />
-    </Chart>
-  </Paper>
+        <LineSeries valueField="value" argumentField="argument" />
+      </Chart>
+    </Paper>
+  </div>
 );
