@@ -1,5 +1,3 @@
-.vertical-text {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-    background-color:red;
-}
+.metric {
+    margin: 0.5rem 0;
+  }

@@ -7,6 +7,8 @@ import {
   LineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 import '../styles/Chart.css'
+import Chip from '../components/Chip';
+import Avatar from '@material-ui/core/Avatar';
 
 const format = () => tick => prettyDate2(tick);
 
@@ -29,6 +31,9 @@ const ValueLabel = (props) => {
 
 export default (props) => (
   <div className="div-alignment">
+    <div className="metric">
+      <Chip avatar={<Avatar>{props.yLabel}</Avatar>} label={`${props.yLabel === 'PSI' ? 'Pressure' : props.yLabel === 'F' ? 'Farenheight' : 'Percent'}`} />
+    </div>
     <Paper>
       <Chart
         data={props.title}
