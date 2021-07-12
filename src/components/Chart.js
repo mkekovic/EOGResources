@@ -38,10 +38,10 @@ export default (props) => (
       <Chart
         data={props.title}
       >
-        <ArgumentAxis tickFormat={format} />
+        <ArgumentAxis tickFormat={format} />  
         <ValueAxis max={50} labelComponent={ValueLabel} />
 
-        <LineSeries valueField="value" argumentField="argument" />
+        <LineSeries  valueField="metricValue" argumentField="time" />
       </Chart>
     </Paper>
   </div>

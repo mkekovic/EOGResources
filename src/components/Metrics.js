@@ -73,7 +73,6 @@ const Metrics = () => {
     });
 
     const [resSub] = useSubscription({ query: GET_SUB });
-    console.log('----->', resSub)
     // const handleSubscription = (messages = [], response) => {
     //     return [response.newMessages, ...messages];
     //   };
@@ -123,11 +122,13 @@ const Metrics = () => {
     // });    <div>----{Messages()}</div>
     chartData = resultMeasurements.data?.getMeasurements.map(({ at, value }) => {
         let d = new Date(at);
-        let rObj = { argument: d, value: value }
+        let rObj = { time: d, metricValue: value, metric2Value: 100 }
         return rObj
     })
     const yLabel = resultMeasurements.data?.getMeasurements[0].unit
     var ddlData = resultMetrics.data?.getMetrics
+
+    
 
     return (
         <div>
