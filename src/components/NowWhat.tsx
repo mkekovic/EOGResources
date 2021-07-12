@@ -8,7 +8,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from './Avatar';
-import Metrics from '../Features/Metrics'
 
 const useStyles = makeStyles({
   card: {
@@ -45,7 +44,7 @@ export default () => {
           </ListItem>
         </List>
 
-        <Metrics />
+        
 
         <Typography variant="body1">
           Remember to refer to our <a href="https://react.eogresources.com/assessing">How We Assess Submissions</a>{' '}
