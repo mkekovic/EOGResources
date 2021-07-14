@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -12,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function DropDown(props) {
 
-    const listItems = props.list.map((metric) => <MenuItem value={metric}>{metric}</MenuItem>);
+    const listItems = props.list.map((metric) => <MenuItem key={`${metric}`} value={metric}>{metric}</MenuItem>);
 
     const useStyles = makeStyles((theme) => ({
         formControl: {
@@ -25,6 +24,8 @@ export default function DropDown(props) {
     }));
     const classes = useStyles();
     const [age, setAge] = React.useState('');
+
+    // callback to modify the selected metric in the main screen
     const handleChange = (event) => {
         setAge(event.target.value)
         props.parentCallback(event.target.value);
