@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import '../styles/Metrics.css'
-// import { actions } from '../reducer';
 import { Provider, createClient, useQuery, useSubscription } from 'urql';
 import Demo from '../components/Chart'
 import DropDown from '../components/dropDown'
 import MetricCard from '../components/metricCard'
-import Button from '@material-ui/core/Button';
 
 
 const client = createClient({
@@ -96,52 +93,41 @@ const Metrics = () => {
     //     );
     // };
 
-    // const NewMetricValueNotification = () => {
-    //     const { data, error, loading } = useSubscription({query: GET_SUB});
-    //     // 
-    //     console.log("--------->",data)
-    //     // if (loading) {
-    //     //     return <div> Loading.... </div>;
-    //     // }
-    //     // if (error) {
-    //     //     return <div> Error.... {error.message} </div>;
-    //     // }
-    //     // return (
-    //     //     <div>
-    //     //         <h1>New Metric Update! </h1>
-    //     //     </div>
-    //     // )
-    // }
-
-    // console.log(resultSub)
-    // const resultMeasurementValue = useQuery({
-    //     query: getLastMeasurement,
-    //     variables: {
-    //         selectedMetric,
-    //     },
-    // });    <div>----{Messages()}</div>
     chartData = resultMeasurements.data?.getMeasurements.map(({ at, value }) => {
         let d = new Date(at);
         let rObj = { time: d, metricValue: value, metric2Value: 100 }
         return rObj
     })
     const yLabel = resultMeasurements.data?.getMeasurements[0].unit
-    var ddlData = resultMetrics.data?.getMetrics
+    const ddlData = resultMetrics.data?.getMetrics
+    const lastMetricValue = resultMeasurements.data?.getMeasurements[resultMeasurements.data?.getMeasurements.length - 1].value
 
-    
+
+    const RenderScreen = () => {
+        return (
+            <div>
+                <div className="metric-header">
+                    {metric !== '' ? <MetricCard metric={metric} metricValue={lastMetricValue} /> : null}
+                </div>
+                <div className="chartBox">
+                    {metric !== '' ? <Demo title={chartData || []} yLabel={yLabel} /> : null}
+                </div>
+            </div >
+        )
+    }
+
 
     return (
         <div>
-            <div className="metric-header">
-                {metric !== '' ? <MetricCard metric={metric} metricValue={resultMeasurements.data?.getMeasurements[resultMeasurements.data?.getMeasurements.length - 1].value} /> : null}
-                <DropDown list={ddlData || []} parentCallback={changeMetric} />
+            <div style={{ "justify-content": "space-between", width: "80%", margin: "auto" }}>
+                <div>
+                    <div style={{position: "absolute", right: "10%"}} >
+                        <DropDown list={ddlData || []} parentCallback={changeMetric} />
+                    </div>
+                    <RenderScreen />
+
+                </div>
             </div>
-
-
-            <div className="chartBox">
-                {metric !== '' ? <Demo title={chartData || []} yLabel={yLabel} /> : null}
-            </div>
-
         </div >
     )
 };
